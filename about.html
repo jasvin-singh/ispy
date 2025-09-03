@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - I Spy Animations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin:0; padding:0;
+      color:#fff; scroll-behavior:smooth;
+    }
+
+    /* Header from index */
+    header {
+      position: fixed; top:0; left:0; width:100%; 
+      display:flex; justify-content:flex-start;  gap: 400px; align-items:center;
+      padding:30px 50px; z-index:1000;
+      background: transparent;
+      transition: background-color 0.5s ease, box-shadow 0.5s ease, padding 0.4s ease;
+    }
+    header.scrolled {
+
+      background: url('images/header-blue-3.jpg') no-repeat center center/cover; 
+
+       <!-- background-color: rgba(152,235,250,0.95);  -->
+      padding: 18px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    header .logo {display:flex; align-items:center; gap:15px;}
+    .logo img {height:100%; max-height:60px; width:auto;}
+    .tagline {
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight:bold;
+      color:#0c2729;
+      white-space:nowrap;
+      animation: smooth-blink 3s infinite ease-in-out;
+    }
+   
+    @keyframes smooth-blink {
+      0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;}
+    }
+
+
+     header nav {
+                 margin-left: 5px;   /* pushes whole nav block to the right */
+                }
+    header nav ul {list-style:none; display:flex; gap:30px;}
+    header nav ul li a {color:white; text-decoration:none; font-size:1rem; transition:color 0.3s;}
+    header nav ul li a:hover {color:#f39c12;}
+
+    /* About section */
+    .about-section {
+      background:url('images/photo-1.jpg') no-repeat center center/cover;
+      width:100%; height:100vh;
+      position:relative;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+    .about-section::before {
+      content:"";
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.6);
+      z-index:0;
+    }
+    .about-content {
+      position:relative; z-index:1;
+      max-width:900px;
+      color:white;
+    }
+    .about-content h1 {
+      font-size:2.8rem;
+      margin-bottom:20px;
+      color:#4a90e2;
+    }
+    .about-content p {
+      font-size:1.2rem;
+      line-height:1.7;
+      margin-bottom:20px;
+    }
+  .services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  row-gap: 50px;   /* ensures space between rows */
+  column-gap: 40px; /* keeps side spacing */
+  
+}
+
+
+
+
+
+ .service-card {
+  perspective: 1000px;
+  overflow: visible;  /* allow back face to extend */
+}
+
+.card-inner {
+  position: relative;
+  width: 95%;
+  height: 140px;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.service-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card-back {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+/* Front face stays clean */
+.card-front {
+  background: rgba(188,228,244,0.9);
+  color: #000;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Back face with zoom overflow */
+.card-back {
+  transform: rotateY(180deg);
+  background: #000;
+  border-radius: 12px;
+  z-index: 10;
+  overflow: visible;   /* let it grow outside card */
+}
+
+.card-back img,
+.card-back video {
+  width: 110%;   /* little bigger than card */
+  height: 110%;
+  object-fit: cover;
+  border-radius: 12px;
+  transform: scale(1.1);  /* initial subtle zoom */
+  transition: transform 0.5s ease-in-out;
+}
+
+/* On hover flip → zoom a bit more */
+.service-card:hover .card-back img,
+.service-card:hover .card-back video {
+  transform: scale(1.2);  /* up to 20% zoom */
+}
+
+    .service-card i {
+      font-size:2rem; color:#f39c12; margin-bottom:15px;
+    }
+
+
+
+
+    /* Footer from index */
+    footer {
+      background: url('images/footer.jpg') no-repeat center center/cover;
+      background-color: #D9D3AD;
+      color: black;  
+      padding: 10px;
+      margin-top: 0;
+      font-size: 0.95rem;
+    }
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+    .footer-left, .footer-center, .footer-right {flex:1; min-width:220px; padding:0 10px;}
+    .footer-right {text-align:right;}
+    .footer-center {text-align:center;}
+    .footer-center p {margin-bottom:8px; font-weight:bold;}
+    .footer-left p, .footer-right p {margin:2px 0;}  
+    .footer-center .social-links a {margin:0 10px; color:#333; text-decoration:none;}
+    footer a {color:black; text-decoration:none;}
+    footer .copyright {text-align:center; margin-top:15px; font-size:0.85rem; color:#333;}
+
+    /* WhatsApp button */
+    .whatsapp-float {
+      position: fixed; bottom: 20px; left: 20px; width: 60px; height: 60px;
+      background: rgba(37, 211, 102, 0.25); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(10px) saturate(180%);
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      z-index: 1000; transition: all 0.3s ease-in-out; text-decoration:none;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-4px) scale(1.05);
+      background: rgba(37,211,102,0.35);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="logo">
+      <img src="images/logo.jpg" alt="iSpy Logo">
+      <span class="tagline">I Spy Animations - Turning Imagination into Motion</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index-ispy.html#home">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="services.html">SERVICES</a></li>
+        <li><a href="index-ispy.html#team">TEAM</a></li>
+        <li><a href="contact.html#contact">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="about-content">
+      <h1>About Us</h1>
+      <p>At <strong>I Spy Animations</strong>, we believe every idea deserves to move.<br>
+      Our team transforms concepts into visual stories through:</p>
+
+      <div class="services">
+        
+
+
+       <div class="service-card">
+  <div class="card-inner">
+    <div class="card-front">
+      <i class="fas fa-cubes"></i>
+      <h3>High-quality 2D & 3D animation</h3>
+    </div>
+    <div class="card-back">
+      <img src="images/photo-about-1.jpg" alt="2D & 3D Animation">
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="card-inner">
+    <div class="card-front">
+      <i class="fas fa-chalkboard"></i>
+      <h3>Engaging explainer videos</h3>
+    </div>
+    <div class="card-back">
+  <video controls playsinline>
+    <source src="videos/video-about-2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="card-inner">
+    <div class="card-front">
+      <i class="fas fa-bolt"></i>
+      <h3>Eye-catching motion graphics & logo animations</h3>
+    </div>
+    <div class="card-back">
+      <img src="images/photo-about-2.jpg" alt="Motion Graphics">
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="card-inner">
+    <div class="card-front">
+      <i class="fas fa-user"></i>
+      <h3>Creative character design & storyboarding</h3>
+    </div>
+    <div class="card-back">
+      <img src="images/photo-about-2.jpg" alt="Character Design">
+    </div>
+  </div>
+</div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <p>📞 Phone: <a href="tel:+916283065859">6283065859</a></p>
+        <p>📞 Phone: <a href="tel:+918178054131">8178054131</a></p>
+      </div>
+      <div class="footer-center">
+        <p>Follow us:</p>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a>
+        </div>
+      </div>
+      <div class="footer-right">
+        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:ispy2025@gmail.com">ispy2025@gmail.com</a></p>
+        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:g1d2singh@gmail.com">g1d2singh@gmail.com</a></p>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2025 I Spy Animations</p>
+  </footer>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/916283065859" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp" style="font-size:30px; color:white;"></i>
+  </a>
+
+  <script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 50){
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
