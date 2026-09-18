@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en-IN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Careers at iSpy Animations | Creative &amp; Animation Roles</title>
+<!-- Fonts & Icons (same stack as Contact) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&amp;family=Noto+Serif&amp;display=swap" rel="stylesheet"/>
+<style>
+    /* ===== Page Base (mirrors Contact.html) ===== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      padding: 75px 50px 50px; /* keep space for fixed header */
+      scroll-behavior: smooth;
+      background: url('images/contact-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* ===== Header (copied structure/styles) ===== */
+    header {
+      position: fixed; top:0; left:0; width:100%;
+      display:flex; justify-content:flex-start; gap: 950px; align-items:center;
+      padding:6px 25px; z-index:1000;
+      background: transparent;
+      transition: background-color 0.5s ease, box-shadow 0.5s ease, padding 0.4s ease;
+    }
+    header.scrolled { background-color: rgba(255,255,255,0.95); padding: 6px 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    header .logo { display:flex; align-items:center; gap:15px; }
+    .logo img { max-height:45px; width:auto; }
+    nav ul { list-style:none; display:flex; gap:30px; }
+    nav ul li a { color:#000; text-decoration:none; font-family:'Noto Sans', 'Noto Serif', Matterhorn, Helvetica, sans-serif; font-size:1.0rem; transition: color .3s; }
+    nav ul li a span { font-size:.8rem; }
+    nav ul li a:hover { color:#f39c12; }
+
+    /* ===== Headings & Buttons (carry over contact styles) ===== */
+    h1 {
+      font-family: 'Noto Sans', 'Noto Serif', Matterhorn, Helvetica, sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 10px;
+     /* text-transform: uppercase; */
+      margin-top: 10px;
+      background: linear-gradient(90deg, #4a90e2 0%, #00c6ff 50%, #0072ff 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.35), 0 0 20px rgba(0,171,243,0.25);
+    }
+
+    p.lede { max-width: 900px; margin: 10px auto 28px; color:#000; font-size:1.05rem; }
+
+    .actions { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom: 28px; }
+    .btn {
+      padding: 14px 40px; font-size:1.05rem; font-weight:600; color:#000; text-decoration:none;
+      border-radius:50px; border:1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all .3s ease; display:inline-flex; align-items:center; gap:10px;
+    }
+    .btn:hover { background: rgba(74,144,226,0.25); transform: scale(1.05); box-shadow: 0 6px 22px rgba(0,171,243,0.6); }
+    .btn:active { transform: scale(0.97); }
+
+    /* ===== Sections ===== */
+    .wrap { max-width:1100px; margin:0 auto; }
+
+    .why { background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:20px 24px; box-shadow:0 10px 30px rgba(0,0,0,0.25); margin: 24px auto; }
+    .why h2 { margin: 0 0 10px; color:#000; font-size:1.4rem; }
+    .why p { color:#111; margin: 6px 0; }
+    .why ul { color:#111; text-align:left; max-width:900px; margin: 8px auto; }
+
+    /* ===== Roles Grid ===== */
+    .grid { display:grid; grid-template-columns: repeat(2, minmax(260px,1fr)); gap:18px; margin: 26px auto; }
+    @media (max-width: 780px) { .grid { grid-template-columns: 1fr; } }
+
+    .card { background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:18px; text-align:left; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+    .card h3 { margin:0 0 8px; color:#000; font-size:1.15rem; }
+    .meta { color:#0a0a0a; font-size:.95rem; margin-bottom:8px; }
+    .card p { color:#111; margin: 8px 0 12px; }
+    .tag { display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid rgba(0,0,0,0.15); background: rgba(255,255,255,0.6); color:#000; font-size:.8rem; margin-right:6px; }
+
+    .howto { background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:20px 24px; margin: 8px auto 20px; text-align:left; color:#111; }
+    .howto h2 { margin:0 0 8px; color:#000; font-size:1.35rem; }
+    .howto ol { margin-left: 18px; }
+
+    /* Small helper */
+    .muted { color:#222; font-size:.95rem; }
+  </style>
+<meta content="Explore remote and hybrid creative opportunities at iSpy Animations across animation, motion graphics, social media editing and client acquisition." name="description"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="#061116" name="theme-color"/><link href="https://jasvin-singh.github.io/iSpy/careers.html" rel="canonical"/><meta content="website" property="og:type"/><meta content="Careers at iSpy Animations | Creative &amp; Animation Roles" property="og:title"/><meta content="Explore remote and hybrid creative opportunities at iSpy Animations across animation, motion graphics, social media editing and client acquisition." property="og:description"/><meta content="https://jasvin-singh.github.io/iSpy/careers.html" property="og:url"/><meta content="iSpy Animations" property="og:site_name"/><meta content="https://jasvin-singh.github.io/iSpy/images/photo-9.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><link href="assets/theme-switch.css" rel="stylesheet"/><script defer="" src="assets/theme-switch.js"></script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "iSpy Animations", "url": "https://jasvin-singh.github.io/iSpy/", "email": "ispyanimations@gmail.com", "telephone": ["+916283065859", "+918178054131"], "areaServed": "India", "sameAs": ["https://www.linkedin.com/company/ispy-animations/"]}</script><link href="images/logo.png" rel="icon" type="image/png"/></head>
+<body>
+<!-- ===== Header ===== -->
+<header id="header">
+<div class="logo">
+<img alt="iSpy Logo" src="images/logo.png"/>
+</div>
+<nav>
+<ul>
+<li><a href="index.html#hero">H<span>OME</span></a></li>
+<li><a href="index.html#services">S<span>ERVICES</span></a></li>
+<li><a href="about.html">A<span>BOUT</span></a></li>
+<li><a href="index.html#about">P<span>ROJECTS</span></a></li>
+<li><a href="contact.html">C<span>ONTACT</span></a></li>
+</ul>
+</nav>
+<div aria-label="Website colour theme" class="ispy-theme-switcher" role="group"><a aria-label="Light theme" class="light-half" data-theme="light" href="light/careers.html" title="Light theme"></a><a aria-current="page" aria-label="Dark theme" class="dark-half is-active" data-theme="dark" href="careers.html" title="Dark theme"></a></div></header>
+<!-- ===== Hero / Title ===== -->
+<h1>CAREERS AT iSpy Animations</h1>
+<p class="lede">Join <strong>iSpy Animations</strong> to craft visuals, motion design, and story-led content. We value craft, discipline, and kind collaboration.</p>
+<div class="actions">
+<a class="btn" href="mailto:ispyanimations@gmail.com?subject=Application%20-%20I%20Spy%20Animations&amp;body=Hi%20I%20Spy%20Animations%20Team%2C%0D%0A%0D%0ARole%20I%27m%20applying%20for%3A%20%5Bpick%20one%5D%0D%0APortfolio%20link%3A%0D%0AReel%20link%3A%0D%0AExperience%20%26%20tools%3A%0D%0ANotice%20period%20(if%20any)%3A%0D%0ACity%2FTimezone%3A%0D%0A%0D%0AThanks!"> <i class="fa-solid fa-paper-plane"></i> Apply via Email</a>
+<span>DM on Instagram</span>
+</div>
+<div class="wrap">
+<!-- ===== Why Join ===== -->
+<section class="why">
+<h2>Why iSpy Animations</h2>
+<ul>
+<li>Storytelling: real emotions, clean visuals, strong narrative beats.</li>
+<li>Hands-on direction &amp; clear feedback loops at every stage.</li>
+<li>Flexible, remote-friendly collaboration; delivery-focused culture.</li>
+<li>Credit for your work and space to grow your portfolio.</li>
+</ul>
+</section>
+<!-- ===== Open Roles ===== -->
+<section class="roles">
+<h2 style="color:#000; margin: 16px 0 6px;">Current Openings</h2>
+<p class="muted">These reflect our usual hiring tracks. If you don’t see a perfect fit, write to us anyway.</p>
+<div class="grid">
+<article class="card">
+<h3>2D Animator (Vector / Cut-out)</h3>
+<div class="meta"><span class="tag">Part-time</span><span class="tag">Remote</span></div>
+<p>Create 2D sequences (300–420 sec/month) in a consistent style; deliver MP4 + project files; follow script/boards and incorporate feedback.</p>
+<a class="btn" href="mailto:ispyanimations@gmail.com?subject=Application%20-%202D%20Animator">Apply</a>
+</article>
+<article class="card">
+<h3>Motion Graphics Designer</h3>
+<div class="meta"><span class="tag">Contract</span><span class="tag">Remote</span></div>
+<p>Design typographic layouts, transitions, logo stings; strong sense of timing &amp; composition; After Effects (or equivalent) proficiency required.</p>
+<a class="btn" href="mailto:ispyanimations@gmail.com?subject=Application%20-%20Motion%20Graphics">Apply</a>
+</article>
+<article class="card">
+<h3>Client Acquisition Associate</h3>
+<div class="meta"><span class="tag">Part-time</span><span class="tag">Hybrid/Remote</span></div>
+<p>Outreach to education/brand clients, manage leads &amp; cold emails, organize discovery calls; clear reporting and weekly targets.</p>
+<a class="btn" href="mailto:ispyanimations@gmail.com?subject=Application%20-%20Client%20Acquisition">Apply</a>
+</article>
+<article class="card">
+<h3>Social Media Editor</h3>
+<div class="meta"><span class="tag">Part-time</span><span class="tag">Remote</span></div>
+<p>Cut vertical reels, write captions/hashtags, track performance, and maintain a consistent visual tone across platforms.</p>
+<a class="btn" href="mailto:ispyanimations@gmail.com?subject=Application%20-%20Social%20Media%20Editor">Apply</a>
+</article>
+</div>
+</section>
+<!-- ===== How to Apply ===== -->
+<section class="howto">
+<h2>How to Apply</h2>
+<ol>
+<li>Send your <strong>portfolio/reel links</strong> (Drive, YouTube, ArtStation, Behance, etc.).</li>
+<li>Mention the <strong>role</strong> you’re applying for, your <strong>tools</strong> and <strong>experience</strong>.</li>
+<li>Share <strong>availability</strong>, <strong>location/timezone</strong>, and any constraints.</li>
+<li>Optional: pick a poem/short script from our channel and create a <strong>10–20s sample</strong> in your style.</li>
+</ol>
+<p class="muted">We’ll review applications on a rolling basis. If shortlisted, we’ll schedule a quick call on Microsoft Teams.</p>
+</section>
+</div>
+<div class="actions">
+<a class="btn" href="index.html"><i class="fa-solid fa-house"></i> Back to Home</a>
+<a class="btn" href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+</div>
+<script>
+    // Header scroll effect (same behavior as Contact)
+    const headerEl = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) headerEl.classList.add('scrolled');
+      else headerEl.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>

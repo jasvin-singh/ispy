@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jasvin-singh.github.io/iSpy/sitemap.xml

@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+
+<html lang="en-IN">
+<head>
+<meta charset="utf-8"/>
+<meta content="iSpy Animations is a creative studio for 2D and 3D animation, CGI, VFX, motion graphics, explainer videos and visual storytelling in India." name="description"/>
+<title>iSpy Animations | 3D Animation, VFX &amp; CGI Studio</title>
+<!-- Include Font Awesome CDN in <head> -->
+<link href="https://jasvin-singh.github.io/iSpy/" rel="canonical"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&amp;family=Noto+Serif&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family:Arial, sans-serif; color:white; background:#000; scroll-behavior:smooth;}
+   
+
+ header {
+  position: fixed; top:0; left:0; width:100%; 
+  display:flex; justify-content:space-between; align-items:center;
+  padding:6px 25px; z-index:1000;
+  background: transparent;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease, padding 0.4s ease;
+}
+
+    header .logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  height: 100%;
+  max-height: 45px;
+  width: auto;
+}
+
+.tagline {
+  font-size: 2.0rem;
+            font-family: 'Brush Script MT', cursive;
+            font-style: italic;
+            font-weight: bold;
+              color: #0c2729;
+  white-space: nowrap;
+}
+    header nav ul {list-style:none; display:flex; gap:30px;}
+    header nav ul li a {color: #000000; text-decoration:none; font-family: 'Noto Sans', 'Noto Serif', Matterhorn, Helvetica, sans-serif; font-size:1.0rem; transition:color 0.3s;}
+    header nav ul li a span {
+                              font-size: 0.8rem;  /* larger size for first letter */
+                                     }
+    header nav ul li a:hover {color:#f39c12;}
+    section {min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:80px 20px; background-size:cover; background-position:center; position:relative;}
+    
+    /* Hero Section */
+   .hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.marquee {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none; /* ensures text doesn’t block clicks */
+}
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+   /* Footer */
+    footer {
+  background: url('images/footer.jpg') no-repeat center center/cover;
+  background-color: #D9D3AD;
+  color: black;  
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;  /* top-align text in each column */
+  flex-wrap: wrap;          /* so it stacks on mobile */
+  text-align: left;
+}
+
+.footer-left, .footer-center {
+  flex: 1;
+  min-width: 220px;
+  padding: 0 10px;
+}
+
+.footer-right {
+  flex: 1;
+  min-width: 220px;
+  padding: 0 10px;
+  text-align: right;
+
+}
+
+
+.footer-left p, .footer-right p {
+  margin: 2px 0;
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.footer-center p {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.footer-center .social-links a {
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+footer a {
+  color: black;
+  text-decoration: none;
+}
+
+footer .copyright {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+
+    /* Floating WhatsApp */
+    .whatsapp-float {
+      position:fixed; bottom:20px; left:20px; z-index:999;
+      background:#25D366; border-radius:50%; width:60px; height:60px;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 10px rgba(0,0,0,0.4);
+      transition:transform 0.3s;
+    }
+    .whatsapp-float:hover {transform:scale(1.1);}
+    .whatsapp-float svg {width:30px; height:30px; fill:white;}
+
+
+
+/* Aboutus CSS Section  */
+
+/* ---- About (Alternating Blocks) ---- */
+.about {
+   background-color: rgba(199,250,252,1);      
+  color: #fff;
+  padding: 80px 20px;
+}
+
+.about-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 40px;
+}
+
+.about-item {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;  /* makes text slightly longer */
+  gap: 40px;
+  align-items: center;
+}
+
+.about-item:nth-child(even) {
+  grid-template-columns: 1fr 1.1fr;
+}
+
+.about-img {
+  width: 120%;
+  height: 320px; /* main image height */
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+   margin-left: -10%;    /* centers it visually despite wider width */
+}
+
+.about-img video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+
+.about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+.about-img:hover img {
+  transform: scale(1.08);
+}
+
+.about-text {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  padding: 20px 28px;
+  width: 100%;
+  max-width: 750px;    /* longer horizontally */
+  height: 200px;       /* exactly half of image height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  /* ✨ new text color rules */
+  color: #000000;        /* paragraph and default text color */
+}
+.about-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+  line-height: 1.2;
+ color: #111111;        /* heading color */
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+ color: #222222;        /* paragraph color */
+}
+
+/* Flip order for alternating layout on even rows */
+.about-item:nth-child(even) .about-text { order: 1; }
+.about-item:nth-child(even) .about-img  { order: 2; }
+
+/* ---- Responsive ---- */
+@media (max-width: 980px) {
+  .about-item {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-item {
+    grid-template-columns: 1fr;
+  }
+  .about-text, .about-img { order: initial; }
+}
+
+@media (max-width: 768px) {
+  .about-item {
+    grid-template-columns: 1fr;
+  }
+
+  .about-img {
+    height: 320px;
+  }
+
+  .about-text {
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+
+  </style>
+<meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="#061116" name="theme-color"/><meta content="website" property="og:type"/><meta content="iSpy Animations | 3D Animation, VFX &amp; CGI Studio" property="og:title"/><meta content="iSpy Animations is a creative studio for 2D and 3D animation, CGI, VFX, motion graphics, explainer videos and visual storytelling in India." property="og:description"/><meta content="https://jasvin-singh.github.io/iSpy/" property="og:url"/><meta content="iSpy Animations" property="og:site_name"/><meta content="https://jasvin-singh.github.io/iSpy/images/photo-9.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><link href="assets/theme-switch.css" rel="stylesheet"/><script defer="" src="assets/theme-switch.js"></script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "iSpy Animations", "url": "https://jasvin-singh.github.io/iSpy/", "email": "ispyanimations@gmail.com", "telephone": ["+916283065859", "+918178054131"], "areaServed": "India", "sameAs": ["https://www.linkedin.com/company/ispy-animations/"]}</script><link href="images/logo.png" rel="icon" type="image/png"/></head>
+<body>
+<header id="header">
+<div class="logo"><h1 class="seo-only">iSpy Animations — 3D Animation, VFX &amp; CGI Studio</h1>
+<img alt="iSpy Logo" src="images/logo.png"/>
+</div>
+<nav>
+<ul>
+<li><a href="#hero">H<span>OME</span></a></li>
+<li><a href="#services">S<span>ERVICES</span></a></li>
+<li><a href="about.html">A<span>BOUT</span></a></li>
+<li><a href="#about">P<span>ROJECTS</span></a></li>
+<li><a href="contact.html">C<span>ONTACT</span></a></li>
+</ul>
+</nav>
+<div aria-label="Website colour theme" class="ispy-theme-switcher" role="group"><a aria-label="Light theme" class="light-half" data-theme="light" href="light/index.html" title="Light theme"></a><a aria-current="page" aria-label="Dark theme" class="dark-half is-active" data-theme="dark" href="index.html" title="Dark theme"></a></div></header>
+<!-- Hero Section -->
+<section class="hero" id="hero">
+<div class="video-container">
+<video autoplay="" class="bg-video" id="bgVideo" loop="" muted="" playsinline="">
+<source src="video-1.mp4" type="video/mp4"/>
+</video>
+<audio id="audio-video-1" preload="auto">
+<source src="audio-1.mp3" type="audio/mpeg"/>
+</audio>
+<audio id="audio-video-2" preload="auto">
+<source src="audio-2.mp3" type="audio/mpeg"/>
+</audio>
+<audio id="audio-video-3" preload="auto">
+<source src="audio-3.mp3" type="audio/mpeg"/>
+</audio>
+</div>
+<!-- Video selector bars -->
+<div class="video-selector">
+<span class="bar active" data-video="video-3.mp4"></span>
+<span class="bar" data-video="video-1.mp4"></span>
+<span class="bar" data-video="video-2.mp4"></span>
+</div>
+<div class="sound-link">
+<button aria-label="Toggle hero sound" class="sound-btn" id="soundBtn" type="button">
+<i class="fas fa-volume-up"></i>
+</button>
+</div>
+</section>
+<style>
+/* Sleek bars at bottom */
+.video-selector {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.video-selector .bar {
+  width: 70px;
+  height: 5px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.video-selector .bar:hover {
+  background: rgba(255,255,255,0.7);
+}
+
+.video-selector .bar.active {
+  background: skyblue;
+  transform: scale(1.1);
+}
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('bgVideo');
+    const bars  = document.querySelectorAll('.video-selector .bar');
+    if (!video || bars.length === 0) return;
+
+    let activeIndex = [...bars].findIndex(b => b.classList.contains('active'));
+    if (activeIndex === -1) activeIndex = 0;
+
+    function playVideoAt(index) {
+      if (index < 0) index = bars.length - 1;
+      if (index >= bars.length) index = 0;
+      activeIndex = index;
+
+      bars.forEach(b => b.classList.remove('active'));
+      bars[activeIndex].classList.add('active');
+
+      const src = bars[activeIndex].getAttribute('data-video');
+      if (src) {
+        video.src = src;
+        video.load();
+        video.play();
+      }
+    }
+
+    // Click handlers for bars
+    bars.forEach((bar, i) => {
+      bar.addEventListener('click', () => playVideoAt(i));
+    });
+
+    // --- Swipe Detection ---
+    let startX = 0;
+    let isDown = false;
+
+    // Mouse swipe (desktop)
+    video.addEventListener('mousedown', e => {
+      isDown = true;
+      startX = e.clientX;
+    });
+    video.addEventListener('mouseup', e => {
+      if (!isDown) return;
+      let diff = e.clientX - startX;
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) playVideoAt(activeIndex + 1); // swipe left → next
+        else playVideoAt(activeIndex - 1);          // swipe right → prev
+      }
+      isDown = false;
+    });
+
+    // Touch swipe (mobile)
+    video.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+    });
+    video.addEventListener('touchend', e => {
+      let diff = e.changedTouches[0].clientX - startX;
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) playVideoAt(activeIndex + 1);
+        else playVideoAt(activeIndex - 1);
+      }
+    });
+  });
+</script>
+<!-- Other Sections -->
+<!-- Services Section -->
+<section id="services" style="background-image:url('images/photo-2.jpg'); background-size:cover; background-position:center; padding:0; margin:0; height:100vh; width:100%; 
+       overflow:hidden;">
+<iframe src="services.html" style="width:100%; height:100%; border:none; display:block;" title="iSpy Animations services">
+</iframe>
+</section>
+<!-- About Us Section -->
+<!-- About Us Section (Alternating 4 blocks) -->
+<section class="about" id="about">
+<div class="about-wrap">
+<!-- Block 1: Image | Text -->
+<article class="about-item">
+<div class="about-img">
+<video autoplay="" controls="" loop="" muted="" playsinline="">
+<source src="projects-SHM.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+</div>
+<div class="about-text">
+<h2>E&amp;E-Explainer &amp; Educational</h2>
+<p>
+            A concise <strong>explainer</strong> that <em>simplifies complex ideas</em>—breaking down Complex Concepts with clean diagrams, step-by-step logic and on-screen cues.
+          </p>
+<p>
+    A classroom-friendly <strong>educational</strong> piece that makes learning <em>interactive and memorable</em>—visualising equations, real-world analogies for instant comprehension.
+       </p>
+</div>
+</article>
+<!-- Block 2: Text | Image -->
+<article class="about-item">
+<div class="about-text">
+<h2>VFX Projects</h2>
+<p>
+         A seamless blend of <strong>motion graphics</strong> and <strong>visual effects</strong>—
+    enhancing live-action with compositing, simulations, and scene polish to deliver
+    cinematic, story-driven moments.
+        </p>
+</div>
+<div class="about-img">
+<video autoplay="" controls="" loop="" muted="" playsinline="">
+<source src="video-3.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+</div>
+</article>
+<!-- Block 3: Image | Text -->
+<article class="about-item">
+<div class="about-img">
+<video autoplay="" controls="" loop="" muted="" playsinline="">
+<source src="video-2.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+</div>
+<div class="about-text">
+<h2>Our Process</h2>
+<p>
+          Script → Storyboard → Styleframes → Animation → Sound → Master.
+        </p>
+<p>
+          You’ll see progress at each stage with tight, transparent checkpoints.
+        </p>
+</div>
+</article>
+<!-- Block 4: Text | Image -->
+<article class="about-item">
+<div class="about-text">
+<h2>Why Us</h2>
+<p>
+          Strong storytelling, consistent visual language, and delivery discipline.
+        </p>
+<p>
+          We love poetry and narrative work—perfect for <em>Meri Kalam Se</em> and brand tales alike.
+        </p>
+</div>
+<div class="about-img">
+<video autoplay="" controls="" loop="" muted="" playsinline="">
+<source src="projects-VFX.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+</div>
+</article>
+</div>
+</section>
+<!-- === My Team Section with Dual 3D Globes and Glass Buttons === -->
+<section class="team-section" id="team">
+<!-- Background video -->
+<!--  <div class="team-bg" aria-hidden="true"> -->
+<!--   <video id="teamVideo" autoplay muted loop playsinline preload="metadata" poster="assets/team-bg-poster.jpg"> -->
+<!-- Use both sources if you have them; the browser picks the best -->
+<!--     <source src="team-bg.mp4" type="video/mp4"> -->
+<!-- Fallback text for very old browsers -->
+<!--      Your browser does not support the video tag. -->
+<!--    </video> -->
+<!--    <div class="team-overlay"></div> -->
+<!--  </div>  -->
+<!-- Left Globe -->
+<div class="globe3D" id="globe-left"></div>
+<!-- Center Buttons -->
+<div class="team-buttons">
+<a class="glass-btn" href="company.html">Our Company</a>
+<a class="glass-btn" href="careers.html">Work With Us</a>
+</div>
+<!-- Right Globe -->
+<div class="globe3D" id="globe-right"></div>
+</section>
+<!-- Footer -->
+<footer>
+<div class="footer-container">
+<div class="footer-left">
+<p>📞 Phone: <a href="tel:+916283065859">6283065859</a></p>
+<p>📞 Phone: <a href="tel:+918178054131">8178054131</a></p>
+</div>
+<div class="footer-center">
+<p>Follow us:</p>
+<div class="social-links">
+<span>Instagram</span>
+<span>Facebook</span>
+<span>X (Twitter)</span>
+<a href="https://www.linkedin.com/company/ispy-animations/" rel="noopener noreferrer" target="_blank"> <i class="fab fa-linkedin"></i></a>
+</div>
+</div>
+<div class="footer-right">
+<p><i class="fas fa-envelope"></i> Email: <a href="mailto:ispyanimations@gmail.com">ispyanimations@gmail.com</a></p>
+<p><i class="fas fa-envelope"></i> Email: <a href="mailto:g1d2singh@gmail.com">g1d2singh@gmail.com</a></p>
+</div>
+</div>
+<p class="copyright">© 2025 iSpy Animations</p>
+</footer>
+<!-- Floating WhatsApp Glassy Button -->
+<a class="whatsapp-float" href="https://wa.me/916283065859" rel="noopener noreferrer" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+<style>
+    .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 60px;               /* fixed width */
+        height: 60px;              /* fixed height (same as width) */
+        background: rgba(37, 211, 102, 0.25); /* semi-transparent WhatsApp green */
+        color: white;
+        font-size: 25px;
+        text-align: center;
+        padding: 10px;
+        border-radius: 50%;
+        backdrop-filter: blur(10px) saturate(180%); /* frosted glass effect */
+        -webkit-backdrop-filter: blur(10px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3); /* subtle border for glass look */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        z-index: 1000;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .whatsapp-float:hover {
+        transform: translateY(-4px) scale(1.05);
+        background: rgba(37, 211, 102, 0.35);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .whatsapp-float:active {
+        transform: translateY(2px) scale(0.95);
+        background: rgba(37, 211, 102, 0.45);
+        box-shadow: inset 3px 3px 6px rgba(0,0,0,0.4),
+                    inset -2px -2px 6px rgba(255,255,255,0.2);
+    }
+
+ /* Smooth blinking animation */
+@keyframes smooth-blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;  /* start from outside right */
+  font-size: 2.2rem;
+ font-family: 'Comic Sans MS', cursive;
+
+  font-weight: bold;
+  color: #fff;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 1; }
+}
+
+</style>
+<style>
+
+
+/* === My Team Section (3D Version) === */
+.team-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ /* background: linear-gradient(120deg, #0c1117, #18242c); */
+background: url('images/services-bg.jpg') no-repeat center center/cover;
+  overflow: hidden;
+}
+
+/* Globes positioning */
+.globe3D {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+#globe-left { left: 8%; }
+#globe-right { right: 8%; }
+
+/* Buttons in the center */
+.team-buttons {
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  text-align: center;
+}
+
+.glass-btn {
+  padding: 14px 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000000;
+  text-decoration: none;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  animation: float 5s ease-in-out infinite;
+}
+
+.glass-btn:hover {
+  background: rgba(74,144,226,0.25);
+  transform: scale(1.05);
+  box-shadow: 0 6px 22px rgba(0,171,243,0.6);
+}
+
+.glass-btn:active {
+  transform: scale(0.97);
+}
+
+/* Sky-blue glass buttons (Team section) */
+.team-section .glass-btn {
+  background: rgba(135, 206, 235, 0.18);         /* sky blue tint */
+  border-color: rgba(135, 206, 235, 0.55);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 173, 255, 0.35);
+}
+
+.team-section .glass-btn:hover {
+  background: rgba(135, 206, 235, 0.32);
+  transform: scale(1.05);
+  box-shadow: 0 6px 22px rgba(0, 173, 255, 0.55), 0 0 14px rgba(135, 206, 235, 0.6);
+}
+
+.team-section .glass-btn:active {
+  background: rgba(135, 206, 235, 0.45);
+  transform: scale(0.97);
+}
+
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 900px) {
+  .globe3D {
+    width: 200px;
+    height: 200px;
+  }
+  #globe-left { left: -5%; }
+  #globe-right { right: -5%; }
+  .team-buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+
+/* --- Background video layer --- */
+.team-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;               /* behind globes and buttons */
+  overflow: hidden;
+}
+
+.team-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* fill the section */
+  pointer-events: none;      /* keep clicks on buttons */
+  filter: saturate(110%) contrast(105%) brightness(60%);
+}
+
+/* Optional dark overlay for readability; tweak the alpha as needed */
+.team-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.06) 0%,
+    rgba(0,0,0,0.1) 100%
+  );
+  mix-blend-mode: normal;
+}
+.team-bg video { filter: none; }
+
+/* Make sure content layers are above video */
+.team-section .globe3D { z-index: 1; }
+.team-section .team-buttons { z-index: 2; }
+
+/* (If you previously set a background gradient on .team-section, keep it;
+   it serves as a graceful fallback if the video fails to load.) */
+
+
+.sound-link {
+  position: absolute;
+  bottom: 80px;
+  right: 40px;
+  z-index: 12;
+}
+
+.sound-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sound-btn:hover {
+  transform: scale(1.12);
+  background: rgba(0,191,255,0.35);
+}
+
+
+
+</style>
+<script>
+const header = document.getElementById('header');
+const links = header.querySelectorAll('nav ul li a'); // 👈 define all nav links here
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const maxScroll = 300; // controls when it becomes fully opaque
+  const opacity = Math.min(scrollY / maxScroll, 1) * 0.65; // fade 0 → 0.65
+
+  // Header background, blur, shadow
+  header.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+  header.style.backdropFilter = `blur(${opacity * 15}px)`;
+  header.style.webkitBackdropFilter = `blur(${opacity * 15}px)`;
+  header.style.boxShadow = `0 2px 10px rgba(0,0,0,${opacity * 0.5})`;
+
+  // Smoothly darken nav text as background appears
+  links.forEach(link => {
+    link.style.color = `rgba(0, 0, 0, ${0.4 + opacity})`;
+  });
+});
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('bgVideo');
+    const bars  = document.querySelectorAll('.video-selector .bar');
+    if (!video || bars.length === 0) return;
+
+    // Use the bar marked .active, otherwise default to the first
+    let activeBar = document.querySelector('.video-selector .bar.active') || bars[0];
+
+    // Ensure only one is active
+    bars.forEach(b => b.classList.remove('active'));
+    activeBar.classList.add('active');
+
+    // Set initial video source and play
+    const initialSrc = activeBar.getAttribute('data-video');
+    if (initialSrc) {
+      video.src = initialSrc;
+      video.load();
+      const playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.then === 'function') {
+        playAttempt.catch(() => {
+          // If autoplay is blocked, force mute (usually already set) and retry
+          video.muted = true;
+          video.play();
+        });
+      }
+    }
+
+    // Click handlers for switching videos
+    bars.forEach(bar => {
+      bar.addEventListener('click', () => {
+        bars.forEach(b => b.classList.remove('active'));
+        bar.classList.add('active');
+
+        const newSrc = bar.getAttribute('data-video');
+        if (newSrc) {
+          video.src = newSrc;
+          video.load();
+          video.play();
+        }
+      });
+    });
+  });
+</script>
+<script>
+// === 3D Globe Setup ===
+function createGlobe(containerId, colorTint, rotationSpeed = 0.003, reverse = false) {
+  const container = document.getElementById(containerId);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
+
+  // Create sphere
+  const geometry = new THREE.SphereGeometry(1, 64, 64);
+  const texture = new THREE.TextureLoader().load('https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg');
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    emissive: colorTint,
+    emissiveIntensity: 0.2,
+    transparent: true,   
+     opacity: 0.8         
+  });
+  const globe = new THREE.Mesh(geometry, material);
+  scene.add(globe);
+
+  // Lights
+  const light = new THREE.PointLight(0xffffff, 1.2);
+  light.position.set(3, 3, 5);
+  scene.add(light);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.3);
+  scene.add(ambient);
+
+  camera.position.z = 3;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    globe.rotation.y += reverse ? -rotationSpeed : rotationSpeed;
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  // Resize handler
+  window.addEventListener('resize', () => {
+    const size = Math.min(container.clientWidth, container.clientHeight);
+    renderer.setSize(size, size);
+    camera.aspect = 1;
+    camera.updateProjectionMatrix();
+  });
+}
+
+// Create two globes
+createGlobe('globe-left', 0x0072ff, 0.0028, false);  // Left globe (blue)
+createGlobe('globe-right', 0x00e1ff, 0.0028, true);  // Right globe (aqua)
+</script>
+<script>
+  const vid = document.getElementById('teamVideo');
+  if (vid) {
+    const tryPlay = () => vid.play().catch(() => {});
+    document.addEventListener('visibilitychange', tryPlay, { once: true });
+    window.addEventListener('load', tryPlay, { once: true });
+  }
+</script>
+<style>
+/* 🎨 Distinct colors for the team-section buttons */
+
+/* "Our Company" button */
+a.glass-btn[href="company.html"] {
+  color: #00bfff !important;               /* bright sky blue */
+  border-color: rgba(0,191,255,0.6) !important;
+  box-shadow: 0 4px 15px rgba(0,191,255,0.45) !important;
+}
+a.glass-btn[href="company.html"]:hover {
+  color: #ffffff !important;
+  background: rgba(0,191,255,0.25) !important;
+  box-shadow: 0 6px 22px rgba(0,191,255,0.6) !important;
+}
+
+/* "Work With Us" button */
+a.glass-btn[href="careers.html"] {
+  color: #00bfff !important;               /* bright sky blue */
+  border-color: rgba(0,191,255,0.6) !important;
+  box-shadow: 0 4px 15px rgba(0,191,255,0.45) !important;
+}
+a.glass-btn[href="careers.html"]:hover {
+  color: #ffffff !important;
+  background: rgba(50,205,50,0.25) !important;
+  box-shadow: 0 6px 22px rgba(50,205,50,0.6) !important;
+}
+</style>
+<style>
+  /* Hide WhatsApp while hero (first screen) is visible */
+  .whatsapp-float.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const video = document.getElementById('bgVideo');
+  const soundBtn = document.getElementById('soundBtn');
+  const icon = soundBtn.querySelector('i');
+
+  const audioMap = {
+    "video-1.mp4": document.getElementById("audio-video-1"),
+    "video-2.mp4": document.getElementById("audio-video-2"),
+    "video-3.mp4": document.getElementById("audio-video-3")
+  };
+
+  let isSoundOn = false;
+  let currentAudio = null;
+  let currentVideoSrc = null;
+
+  if (!video || !soundBtn) return;
+
+  soundBtn.addEventListener('click', () => {
+    const activeBar = document.querySelector('.video-selector .bar.active');
+    if (!activeBar) return;
+
+    const videoSrc = activeBar.getAttribute('data-video');
+    const audio = audioMap[videoSrc];
+    if (!audio) return;
+
+    // 🔇 IF SOUND IS ON → MUTE
+    if (isSoundOn) {
+      video.muted = true;
+      if (currentAudio) currentAudio.pause();
+
+      icon.classList.remove('fa-volume-up');
+      icon.classList.add('fa-volume-mute');
+
+      isSoundOn = false;
+      return;
+    }
+
+    // 🔊 SOUND IS OFF → START / RESTART
+    // Stop all audios
+    Object.values(audioMap).forEach(a => {
+      a.pause();
+      a.currentTime = 0;
+    });
+
+    // Restart video ONLY if changed
+    if (currentVideoSrc !== videoSrc) {
+      video.src = videoSrc;
+      video.load();
+    }
+
+    video.currentTime = 0;
+    video.muted = false;
+    video.play().catch(() => {});
+
+    // Play matching audio
+    audio.currentTime = 0;
+    audio.volume = 1;
+    audio.play().catch(() => {});
+
+    icon.classList.remove('fa-volume-mute');
+    icon.classList.add('fa-volume-up');
+
+    currentAudio = audio;
+    currentVideoSrc = videoSrc;
+    isSoundOn = true;
+  });
+});
+</script>
+</body>
+</html>

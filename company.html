@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en-IN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>iSpy Animations | 3D, CGI, VFX &amp; Creative Production</title>
+<!-- Fonts & Icons (same stack as Contact/Careers) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&amp;family=Noto+Serif&amp;display=swap" rel="stylesheet"/>
+<style>
+    /* ===== Page Base (mirrors Contact/Careers) ===== */
+    body { margin:0; font-family: Arial, sans-serif; color:#fff; text-align:center; padding:75px 50px 50px; scroll-behavior:smooth; background:url('images/contact-bg.jpg') no-repeat center center fixed; background-size:cover; }
+
+    /* ===== Header (same structure/styles) ===== */
+    header { position:fixed; top:0; left:0; width:100%; display:flex; justify-content:flex-start; gap:950px; align-items:center; padding:6px 25px; z-index:1000; background:transparent; transition: background-color .5s ease, box-shadow .5s ease, padding .4s ease; }
+    header.scrolled { background-color: rgba(255,255,255,0.95); padding:6px 25px; box-shadow:0 2px 10px rgba(0,0,0,.5); }
+    header .logo{ display:flex; align-items:center; gap:15px; }
+    .logo img{ max-height:45px; width:auto; }
+    nav ul{ list-style:none; display:flex; gap:30px; }
+    nav ul li a{ color:#000; text-decoration:none; font-family:'Noto Sans','Noto Serif',Matterhorn,Helvetica,sans-serif; font-size:1.0rem; transition: color .3s; }
+    nav ul li a span{ font-size:.8rem; }
+    nav ul li a:hover{ color:#f39c12; }
+
+    /* ===== Headings & Buttons ===== */
+    h1{ font-family:'Noto Sans','Noto Serif',Matterhorn,Helvetica,sans-serif; font-size:2.4rem; font-weight:800; letter-spacing:10px; text-transform:uppercase; margin-top:10px; background:linear-gradient(90deg,#4a90e2 0%,#00c6ff 50%,#0072ff 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; text-shadow:0 3px 8px rgba(0,0,0,.35), 0 0 20px rgba(0,171,243,.25); }
+    p.lede{ max-width:900px; margin:10px auto 28px; color:#000; font-size:1.05rem; }
+
+    .actions{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:28px; }
+    .btn{ padding:14px 40px; font-size:1.05rem; font-weight:600; color:#000; text-decoration:none; border-radius:50px; border:1px solid rgba(255,255,255,.4); background:rgba(255,255,255,.08); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow:0 4px 15px rgba(0,0,0,.3); transition:all .3s ease; display:inline-flex; align-items:center; gap:10px; }
+    .btn:hover{ background:rgba(74,144,226,.25); transform:scale(1.05); box-shadow:0 6px 22px rgba(0,171,243,.6); }
+    .btn:active{ transform:scale(0.97); }
+
+    .wrap{ max-width:1100px; margin:0 auto; }
+
+    /* ===== Company Snapshot ===== */
+    .snapshot{ background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:20px 24px; box-shadow:0 10px 30px rgba(0,0,0,.25); margin:24px auto; }
+    .snapshot h2{ margin:0 0 10px; color:#000; font-size:1.4rem; }
+    .snapshot p, .snapshot ul{ color:#111; text-align:left; max-width:900px; margin:8px auto; }
+
+    /* ===== Org Chart ===== */
+    .org{ background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,.25); margin:24px auto; text-align:center; }
+    .org h2{ margin:0 0 10px; color:#000; font-size:1.4rem; }
+
+    /* Org chart: responsive tree using CSS grid */
+    .org-grid{ display:grid; gap:14px; margin-top:16px; }
+    /* levels */
+    .level{ display:grid; gap:14px; }
+    .level.ceo{ grid-template-columns: 1fr; }
+    .level.exec{ grid-template-columns: repeat(3, minmax(220px,1fr)); }
+    .level.dept{ grid-template-columns: repeat(4, minmax(200px,1fr)); }
+    .level.team{ grid-template-columns: repeat(4, minmax(200px,1fr)); }
+    @media (max-width:1100px){ .level.exec{ grid-template-columns: repeat(2, minmax(220px,1fr)); } .level.dept, .level.team{ grid-template-columns: repeat(2, minmax(200px,1fr)); } }
+    @media (max-width:640px){ .level.dept, .level.team{ grid-template-columns: 1fr; } }
+
+    .node{ position:relative; padding:14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:14px; text-align:left; box-shadow:0 8px 24px rgba(0,0,0,.22); }
+    .node h3{ margin:0 0 4px; color:#000; font-size:1.05rem; }
+    .node .title{ color:#0a0a0a; font-size:.92rem; margin-bottom:6px; }
+    .node .tags{ margin-top:6px; }
+    .tag{ display:inline-block; padding:4px 10px; border-radius:999px; border:1px solid rgba(0,0,0,.15); background:rgba(255,255,255,.6); color:#000; font-size:.8rem; margin:2px 6px 0 0; }
+
+    /* connectors (simple visual separators) */
+    .level + .level{ border-top:1px dashed rgba(0,0,0,.25); padding-top:18px; }
+
+    /* ===== Leadership bios grid ===== */
+    .bios{ background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,.25); margin:24px auto; }
+    .bios h2{ margin:0 0 10px; color:#000; font-size:1.4rem; }
+    .bio-grid{ display:grid; grid-template-columns: repeat(3, minmax(220px,1fr)); gap:16px; }
+    @media (max-width:900px){ .bio-grid{ grid-template-columns: repeat(2, minmax(220px,1fr)); }}
+    @media (max-width:580px){ .bio-grid{ grid-template-columns: 1fr; }}
+    .bio{ text-align:left; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:14px; padding:16px; }
+    .bio h3{ margin:0 0 6px; color:#000; font-size:1.05rem; }
+    .bio .role{ color:#0a0a0a; font-size:.92rem; margin-bottom:6px; }
+    .bio p{ color:#111; margin:0; }
+
+    /* ===== Footer buttons ===== */
+    .muted{ color:#222; font-size:.95rem; }
+  </style>
+<meta content="Meet the structure and creative production approach behind iSpy Animations, covering 3D, CGI, VFX, design, animation and post-production." name="description"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="#061116" name="theme-color"/><link href="https://jasvin-singh.github.io/iSpy/company.html" rel="canonical"/><meta content="website" property="og:type"/><meta content="iSpy Animations | 3D, CGI, VFX &amp; Creative Production" property="og:title"/><meta content="Meet the structure and creative production approach behind iSpy Animations, covering 3D, CGI, VFX, design, animation and post-production." property="og:description"/><meta content="https://jasvin-singh.github.io/iSpy/company.html" property="og:url"/><meta content="iSpy Animations" property="og:site_name"/><meta content="https://jasvin-singh.github.io/iSpy/images/photo-9.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><link href="assets/theme-switch.css" rel="stylesheet"/><script defer="" src="assets/theme-switch.js"></script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "iSpy Animations", "url": "https://jasvin-singh.github.io/iSpy/", "email": "ispyanimations@gmail.com", "telephone": ["+916283065859", "+918178054131"], "areaServed": "India", "sameAs": ["https://www.linkedin.com/company/ispy-animations/"]}</script><link href="images/logo.png" rel="icon" type="image/png"/></head>
+<body>
+<!-- ===== Header ===== -->
+<header id="header">
+<div class="logo"><img alt="iSpy Logo" src="images/logo.png"/></div>
+<nav>
+<ul>
+<li><a href="index.html#hero">H<span>OME</span></a></li>
+<li><a href="index.html#services">S<span>ERVICES</span></a></li>
+<li><a href="about.html">A<span>BOUT</span></a></li>
+<li><a href="index.html#about">P<span>ROJECTS</span></a></li>
+<li><a href="contact.html">C<span>ONTACT</span></a></li>
+</ul>
+</nav>
+<div aria-label="Website colour theme" class="ispy-theme-switcher" role="group"><a aria-label="Light theme" class="light-half" data-theme="light" href="light/company.html" title="Light theme"></a><a aria-current="page" aria-label="Dark theme" class="dark-half is-active" data-theme="dark" href="company.html" title="Dark theme"></a></div></header>
+<!-- ===== Hero ===== -->
+<h1>Creative Production Built Around 3D, CGI &amp; Visual Storytelling</h1>
+<p class="lede">iSpy Animations blends, design, and motion to craft story‑first visuals. Here’s how our teams are structured to deliver quality at speed.</p>
+<p>
+iSpy Animations combines creative direction, 3D production,
+visual effects and post-production to create polished digital experiences.
+</p>
+<p>
+Our workflow covers concept development, modelling, texturing,
+lighting, animation, rendering, compositing and final delivery.
+</p>
+<div class="wrap">
+<!-- ===== Snapshot ===== -->
+<section class="snapshot">
+<h2>Snapshot</h2>
+<ul>
+<li><strong>Founded:</strong> 2024 • <strong>HQ:</strong> India • <strong>Model:</strong> Remote‑first</li>
+<li><strong>Focus:</strong> 2D animation, motion graphics, poetic storytelling, client content</li>
+<li><strong>Values:</strong> Clarity, craft, timelines, kind collaboration</li>
+</ul>
+</section>
+<!-- ===== Organization Chart ===== -->
+<section class="org" id="org">
+<h2>Organization Chart</h2>
+<div class="org-grid">
+<!-- Level 1 -->
+<div class="level ceo">
+<div class="node">
+<h3>Gagandeep Singh</h3>
+<div class="title">Founder &amp; Creative Director</div>
+<div class="tags"><span class="tag">Vision</span><span class="tag">Direction</span><span class="tag">Client Relations</span></div>
+</div>
+</div>
+<!-- Level 2: Executive Leads -->
+<div class="level exec">
+<div class="node">
+<h3>Production Lead</h3>
+<div class="title">Animation &amp; Delivery</div>
+<div class="tags"><span class="tag">Pipelines</span><span class="tag">QA</span><span class="tag">Deadlines</span></div>
+</div>
+<div class="node">
+<h3>Design Lead</h3>
+<div class="title">Storyboard &amp; Visual Design</div>
+<div class="tags"><span class="tag">Boards</span><span class="tag">Styleframes</span><span class="tag">Brand</span></div>
+</div>
+<div class="node">
+<h3>Business Lead</h3>
+<div class="title">Client Acquisition &amp; Ops</div>
+<div class="tags"><span class="tag">Leads</span><span class="tag">Contracts</span><span class="tag">Finance</span></div>
+</div>
+</div>
+<!-- Level 3: Departments (mirrors Careers cards) -->
+<div class="level dept">
+<div class="node">
+<h3>2D Animation</h3>
+<div class="title">Vector / Cut‑out</div>
+<div class="tags"><span class="tag">Rigging</span><span class="tag">Compositing</span><span class="tag">420s/mo</span></div>
+</div>
+<div class="node">
+<h3>Motion Graphics</h3>
+<div class="title">Typography &amp; Transitions</div>
+<div class="tags"><span class="tag">AE</span><span class="tag">Logo Stings</span><span class="tag">Explainers</span></div>
+</div>
+<div class="node">
+<h3>Client Acquisition</h3>
+<div class="title">Outreach &amp; Meetings</div>
+<div class="tags"><span class="tag">CRM</span><span class="tag">Email</span><span class="tag">Targets</span></div>
+</div>
+<div class="node">
+<h3>Social Media</h3>
+<div class="title">Reels &amp; Distribution</div>
+<div class="tags"><span class="tag">Editing</span><span class="tag">Captions</span><span class="tag">Analytics</span></div>
+</div>
+</div>
+<!-- Level 4: Teams / Management Layers -->
+<div class="level team">
+<div class="node">
+<h3>Animation Pods</h3>
+<div class="title">Lead Animator + 2–3 Artists</div>
+<div class="tags"><span class="tag">Shot Owners</span><span class="tag">Dailies</span><span class="tag">Reviews</span></div>
+</div>
+<div class="node">
+<h3>Design Cell</h3>
+<div class="title">Storyboarder + Illustrator</div>
+<div class="tags"><span class="tag">Boards</span><span class="tag">Style</span><span class="tag">Lookdev</span></div>
+</div>
+<div class="node">
+<h3>Sales Squad</h3>
+<div class="title">BDE + Interns</div>
+<div class="tags"><span class="tag">Prospects</span><span class="tag">Follow‑ups</span><span class="tag">Reports</span></div>
+</div>
+<div class="node">
+<h3>Social Ops</h3>
+<div class="title">Editor + Copy + Analyst</div>
+<div class="tags"><span class="tag">Scheduling</span><span class="tag">Thumbnails</span><span class="tag">Insights</span></div>
+</div>
+</div>
+</div>
+<p class="muted" style="margin-top:10px;">Note: Roles scale up/down based on project load. Contractors and collaborators plug into the nearest pod.</p>
+</section>
+<!-- ===== Leadership Bios (Optional content area) ===== -->
+<section class="bios">
+<h2>Leadership</h2>
+<div class="bio-grid">
+<div class="bio">
+<h3>Gagandeep Singh</h3>
+<div class="role">Founder &amp; Creative Director</div>
+<p>Leads creative direction, client relationships, and final quality control across all deliveries.</p>
+</div>
+<div class="bio">
+<h3>Production Lead</h3>
+<div class="role">Animation &amp; Delivery</div>
+<p>Owns scheduling, dailies, and QA; unblocks teams and ensures on‑time delivery.</p>
+</div>
+<div class="bio">
+<h3>Design Lead</h3>
+<div class="role">Storyboard &amp; Visual Design</div>
+<p>Maintains look‑and‑feel, style guides, and coherence between boards and final output.</p>
+</div>
+</div>
+</section>
+</div>
+<div class="actions">
+<a class="btn" href="careers.html"><i class="fa-solid fa-briefcase"></i> Work With Us</a>
+<a class="btn" href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+<a class="btn" href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+</div>
+<script>
+    // Header scroll effect (same behavior as Contact/Careers)
+    const headerEl = document.getElementById('header');
+    window.addEventListener('scroll', () => { if (window.scrollY > 50) headerEl.classList.add('scrolled'); else headerEl.classList.remove('scrolled'); });
+  </script>
+</body>
+</html>
